@@ -1,0 +1,4 @@
+name: Zmod
+author: zwollner
+main: com.zman.bukkit.zmod.Zmod
+version: 1.0b4
