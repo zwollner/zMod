@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zman.bukkit.zmod;
+package com.zmanww.mc.zmod;
 
 import org.bukkit.Material;
 import org.bukkit.entity.CreatureType;
@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityListener;
 import org.bukkit.event.entity.EntityTargetEvent;
 
-import com.zman.bukkit.util.LocationUtil;
+import com.zmanww.mc.util.LocationUtil;
 
 /**
  * @author Zeb

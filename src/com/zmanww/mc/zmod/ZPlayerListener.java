@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zman.bukkit.zmod;
+package com.zmanww.mc.zmod;
 
 import java.text.DecimalFormat;
 
@@ -30,7 +30,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.entity.Wolf;
 
-import com.zman.bukkit.util.LocationUtil;
+import com.zmanww.mc.util.LocationUtil;
 
 /**
  * @author Zeb

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zman.bukkit.zmod;
+package com.zmanww.mc.zmod;
 
 import java.util.logging.Level;
 
@@ -27,7 +27,7 @@ import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.zman.util.EasyRandom;
+import com.zmanww.util.EasyRandom;
 
 /**
  * @author Zeb

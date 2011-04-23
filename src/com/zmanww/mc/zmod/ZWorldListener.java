@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zman.bukkit.zmod;
+package com.zmanww.mc.zmod;
 
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;

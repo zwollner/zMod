@@ -1,4 +1,4 @@
-package com.zman.util;
+package com.zmanww.util;
 
 import java.util.logging.Level;
 

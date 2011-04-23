@@ -1,4 +1,4 @@
-package com.zman.bukkit.zmod;
+package com.zmanww.mc.zmod;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +16,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.zman.util.Logger;
+import com.zmanww.util.Logger;
 
 public class Zmod extends JavaPlugin {
 
