@@ -1,4 +1,4 @@
-package com.zmanww.mc.zmod;
+package com.zmanww.bukkit.zmod;
 
 public class PlayerData {
 

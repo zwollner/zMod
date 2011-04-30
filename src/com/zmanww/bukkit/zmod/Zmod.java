@@ -1,4 +1,4 @@
-package com.zmanww.mc.zmod;
+package com.zmanww.bukkit.zmod;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
@@ -21,6 +23,7 @@ import com.zmanww.util.Logger;
 public class Zmod extends JavaPlugin {
 
     protected static final Logger               logger         = new Logger("Minecraft");
+    private final ZServerListener               serverListener = new ZServerListener(this);
     private final ZPlayerListener               playerListener = new ZPlayerListener(this);
     private final ZBlockListener                blockListener  = new ZBlockListener(this);
     private final ZEntityListener               entityListener = new ZEntityListener(this);
@@ -29,46 +32,27 @@ public class Zmod extends JavaPlugin {
 
     public static Properties                    props          = new Properties();
 
-    public void onDisable() {
-        // TODO: Place any custom disable code here
-
-        // NOTE: All registered events are automatically unregistered when a
-        // plugin is disabled
-
-        // EXAMPLE: Custom code, here we just output some info so we can check
-        // all is well
-        System.out.println("Goodbye world!");
-    }
-
     public void onEnable() {
         // TODO: Place any custom enable code here including the registration of
         // any events
 
         // Register our events
-        PluginManager pm = getServer().getPluginManager();
-        // PlayerEvents
-        pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Normal, this);
-        //pm.registerEvent(Event.Type.PLAYER_LOGIN, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLAYER_KICK, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, playerListener, Priority.Normal, this);
-        // pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
-        // pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Normal, this);
-        // pm.registerEvent(Event.Type.INVENTORY_TRANSACTION, playerListener, Priority.Normal, this);
-
-        // Block Events
-        pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.LEAVES_DECAY, blockListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Priority.Normal, this);
-
-        // Entity Events
-        pm.registerEvent(Event.Type.CREATURE_SPAWN, entityListener, Priority.High, this);
+        registerEvents();
 
         // Load Properties
         loadProperties();
 
         PluginDescriptionFile pdfFile = this.getDescription();
         System.out.println(pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!");
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
+
+        Zmod.logger.log(Level.WARNING, this, "sender=" + sender.toString() + ", command=" + command.toString()
+                + ", args=" + args.toString());
+
+        return true;
     }
 
     private boolean loadProperties() {
@@ -113,10 +97,39 @@ public class Zmod extends JavaPlugin {
         debugees.put(player, value);
     }
 
-    @Override
-    public void onLoad() {
-        // TODO Auto-generated method stub
+    private void registerEvents() {
+        PluginManager pm = getServer().getPluginManager();
 
+        // Server Events
+        pm.registerEvent(Event.Type.SERVER_COMMAND, serverListener, Priority.Monitor, this);
+
+        // PlayerEvents
+        pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Normal, this);
+        // pm.registerEvent(Event.Type.PLAYER_LOGIN, playerListener,
+        // Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_KICK, playerListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, playerListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Highest, this);
+        // pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener,
+        // Priority.Normal, this);
+        // pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener,
+        // Priority.Normal, this);
+        // pm.registerEvent(Event.Type.INVENTORY_TRANSACTION, playerListener,
+        // Priority.Normal, this);
+
+        // Block Events
+        pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.LEAVES_DECAY, blockListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Priority.Normal, this);
+
+        // Entity Events
+        pm.registerEvent(Event.Type.CREATURE_SPAWN, entityListener, Priority.High, this);
+
+    }
+
+    public void onDisable() {
+        System.out.println("zMod Disabled!");
     }
 
 }

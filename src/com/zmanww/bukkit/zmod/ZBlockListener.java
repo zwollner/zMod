@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zmanww.mc.zmod;
+package com.zmanww.bukkit.zmod;
 
 import java.util.logging.Level;
 

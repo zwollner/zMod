@@ -1,4 +1,4 @@
-package com.zmanww.mc.util;
+package com.zmanww.bukkit.util;
 
 import java.util.List;
 

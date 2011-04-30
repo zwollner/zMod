@@ -1,4 +1,20 @@
 name: Zmod
 author: zwollner
-main: com.zman.bukkit.zmod.Zmod
-version: 1.0b4
+main: com.zmanww.bukkit.zmod.Zmod
+version: 1.52.1
+commands:
+  findmob:
+    discription: Locates the closest mob and sets compass to it.
+    usage: /findmob <mobNmae>
+  ugsearch:
+    discription: Toggle underground search for "findmob" on or off.
+    usage: /ugsearch <ON/OFF/TRUE/FALSE>
+  findblock:
+    discription: Locates the closest given block and sets compass to it.
+    usage: /findblock <blockName>
+  settarget:
+    discription: Resets the compass back to spawn
+    usage: /settarget <spawn>
+  getbiome:
+    discription: Tells the player the current Biome their in.
+    usage: /getbiome

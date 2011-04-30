@@ -1,13 +1,16 @@
 /**
  * 
  */
-package com.zmanww.mc.zmod;
+package com.zmanww.bukkit.zmod;
 
 import java.text.DecimalFormat;
+import java.util.logging.Level;
 
 import org.bukkit.Location;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerAnimationEvent;
@@ -30,7 +33,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.entity.Wolf;
 
-import com.zmanww.mc.util.LocationUtil;
+import com.zmanww.bukkit.util.LocationUtil;
 
 /**
  * @author Zeb
@@ -85,6 +88,8 @@ public class ZPlayerListener extends PlayerListener {
             } else if (args.length > 1
                     && (args[1].compareToIgnoreCase("OFF") == 0 || args[0].compareToIgnoreCase("FALSE") == 0)) {
                 playerData.setUGSearchOn(false);
+            } else {
+                playerData.setUGSearchOn(playerData.isUGSearchOn() ? false : true);
             }
             player.sendMessage(ChatColor.GREEN + "Underground Search is " + (playerData.isUGSearchOn() ? "ON" : "OFF"));
             event.setCancelled(true);
@@ -128,6 +133,19 @@ public class ZPlayerListener extends PlayerListener {
         }
         playerData = plugin.pData.put(player, playerData);
         super.onPlayerCommandPreprocess(event);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.bukkit.event.player.PlayerListener#onPlayerChat(org.bukkit.event.
+     * player.PlayerChatEvent)
+     */
+    @Override
+    public void onPlayerChat(PlayerChatEvent event) {
+        Zmod.logger.log(Level.WARNING, this, event.getMessage());
+        super.onPlayerChat(event);
     }
 
     /*
