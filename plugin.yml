@@ -5,16 +5,16 @@ version: 1.52.1
 commands:
   findmob:
     discription: Locates the closest mob and sets compass to it.
-    usage: /findmob <mobNmae>
+    usage: /<command> <mobName>
   ugsearch:
     discription: Toggle underground search for "findmob" on or off.
-    usage: /ugsearch <ON/OFF/TRUE/FALSE>
+    usage: /<command> <ON/OFF/TRUE/FALSE>
   findblock:
     discription: Locates the closest given block and sets compass to it.
-    usage: /findblock <blockName>
+    usage: /<command> <blockName>
   settarget:
     discription: Resets the compass back to spawn
-    usage: /settarget <spawn>
+    usage: /<command> <spawn>
   getbiome:
     discription: Tells the player the current Biome their in.
-    usage: /getbiome
+    usage: /<command>

@@ -33,26 +33,21 @@ public class Zmod extends JavaPlugin {
     public static Properties                    props          = new Properties();
 
     public void onEnable() {
-        // TODO: Place any custom enable code here including the registration of
-        // any events
-
         // Register our events
         registerEvents();
+        
+        //Register Commands
+        getCommand("findmob").setExecutor(new ZCommand(this));
+        getCommand("ugsearch").setExecutor(new ZCommand(this));
+        getCommand("findblock").setExecutor(new ZCommand(this));
+        getCommand("settarget").setExecutor(new ZCommand(this));
+        getCommand("getbiome").setExecutor(new ZCommand(this));
 
         // Load Properties
         loadProperties();
 
         PluginDescriptionFile pdfFile = this.getDescription();
         System.out.println(pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!");
-    }
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
-
-        Zmod.logger.log(Level.WARNING, this, "sender=" + sender.toString() + ", command=" + command.toString()
-                + ", args=" + args.toString());
-
-        return true;
     }
 
     private boolean loadProperties() {
@@ -105,18 +100,10 @@ public class Zmod extends JavaPlugin {
 
         // PlayerEvents
         pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Normal, this);
-        // pm.registerEvent(Event.Type.PLAYER_LOGIN, playerListener,
-        // Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_KICK, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Highest, this);
-        // pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener,
-        // Priority.Normal, this);
-        // pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener,
-        // Priority.Normal, this);
-        // pm.registerEvent(Event.Type.INVENTORY_TRANSACTION, playerListener,
-        // Priority.Normal, this);
+
 
         // Block Events
         pm.registerEvent(Event.Type.BLOCK_CANBUILD, blockListener, Priority.Normal, this);
